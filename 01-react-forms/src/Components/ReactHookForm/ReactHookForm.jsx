@@ -1,6 +1,19 @@
 import logo from '../assets/react.svg'
+import {useForm} from 'react-hook-form'
+import * as yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
+
 
 const ReactHookForm = () => {
+     //* NUESTRA LÓGICA | CREACIÓN DEL ESQUEMA DEL FORMULARIO DE USUARIO UTILIZANDO YUP, PARA VALIDAR NUESTROS CAMPOS
+    const userFormSchema = yup.object()({ 
+        firstName: ,
+        lastName: ,
+        age: ,
+        password: ,
+        gender: ,
+
+    }).required()
 
 
   return (
