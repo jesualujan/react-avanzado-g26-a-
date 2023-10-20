@@ -21,6 +21,15 @@ const ReactHookForm = () => {
                  ,
     }).required()
 
+const {register, handleSubmit, formState: {errors}} = useForm ({
+  //* Resolver, sirve para establecer el esquema de validación, para ello usamos la función
+  //* yupResolver y le pasamos como argumento nuestro schema userFormSchema
+  resolver: yupResolver(userFormSchema)
+})
+  const onSubmit = data => console.log(data)
+
+
+
 
   return (
     <div className='login'>)
