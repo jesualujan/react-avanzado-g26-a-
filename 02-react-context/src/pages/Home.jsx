@@ -2,9 +2,11 @@ import React from 'react'
 import './home.css'
 import SongList from '../components/SongList'
 import SongDetail from '../components/SongDetail'
+import { SongProvider } from '../context/SongContext'
 
 const Home = () => {
   return (
+    <SongProvider>
     <div className='home-container'>
         <div className='izquierdo'>
             <h2>Lado izquierdo</h2>
@@ -15,6 +17,7 @@ const Home = () => {
             <SongDetail/>
         </div>
     </div>
+    </SongProvider>
   )
 }
 

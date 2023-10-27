@@ -1,17 +1,16 @@
 import './App.css'
-import Home from './pages/Home'
 //import Mexico from '../repaso/Mexico.jsx'
 //import USA from '../repaso/USA'
 //import ClassComponent from '../repaso/ClassComponent'
 //import Header from '../repaso/Header'
-import ParentComponent from '../repaso/ParentComponent'
+//import ParentComponent from '../repaso/ParentComponent'
+import Home from './pages/Home'
 
 function App() {
 
   return (
     <>
-   <ParentComponent/>
-    {/* <Home/>  */}
+     <Home/> 
     </>
   )
 }
