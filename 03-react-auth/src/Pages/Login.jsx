@@ -4,11 +4,14 @@ import '@/Style/form.css'
 import {useForm} from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { loginUserService } from '@/Services/userServices'
+import { useAuthContext } from '@/Context/useAuthContext'
 
 const Login = () => {
 
   const {register, handleSubmit, formState: {errors}} = useForm()
     const navigate = useNavigate()
+
+    const {login} = useAuthContext()
     
     const onSubmit = async (data) => {
         try {
@@ -17,6 +20,7 @@ const Login = () => {
               navigate('/')
               console.log('Usuario autenticado correctamente')
               localStorage.setItem('token', response.data.token)
+              login(response.data.token)
             }
         } catch (error) {
             console.log('Ocurrio un error al registrarse', error)

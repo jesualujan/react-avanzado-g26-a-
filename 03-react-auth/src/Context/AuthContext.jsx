@@ -1,26 +1,29 @@
 import React, {createContext, useState, useEffect} from 'react'
 import jwtDecode from 'jwt-decode'
 
-const AuthContext = () => {
-const AuthContext = createContext()
+const AuthContext = createContext() //Creamos el contexto
+
+const AuthProvider = ({children}) => { //Funcion de Proveedor de contexto
+
 const [isAuth, setIsAuth] = useState(false)
 const [userPayload, setUserPayload] = useState(null)
 
-    const login = (token) => {
+    const login = (token) => { //Decodificar token cuando me he logueado y pasar a usuario autenticado
         localStorage.setItem('token',token )
             const decode = jwtDecode(token)
             setUserPayload(decode)
             setIsAuth(true)
     }
 
-    const logout = () => {
+    
+    const logout = () => { //Remover token al hacer logout para borrar datos del usuario en memoria
         localStorage.removeItem('token')
         setUserPayload(null)
         setIsAuth(false)
     }
 
 
-    useEffect(() => {
+    useEffect(() => { //Verificar que exista un token memoria y hacer la decodificacion para mostrar las informacion
         const token = localStorage.getItem('token')
         if(token) {
             const decoded = jwtDecode(token)
@@ -29,11 +32,7 @@ const [userPayload, setUserPayload] = useState(null)
         }
     }, [])
     
-
-
-    const AuthProvider = ({children}) => {
-        const data = {}
-    }
+    const data = {isAuth, userPayload, login, logout}
 
   return (
     <AuthContext.Provider value={data}>
@@ -42,4 +41,4 @@ const [userPayload, setUserPayload] = useState(null)
   )
 }
 
-export default AuthContext
+export default AuthProvider
