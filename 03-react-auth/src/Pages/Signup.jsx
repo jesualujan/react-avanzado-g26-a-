@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { registerUserService } from '@/Services/userServices'
 
+
 const Signup = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm()
@@ -35,6 +36,7 @@ const Signup = () => {
           id='first_name'
           name='first_name'
           placeholder='John'
+          {...register('first_name')}
         />
         <label htmlFor='first_name'>First Name</label>
       </div>
@@ -46,6 +48,7 @@ const Signup = () => {
           id='last_name'
           name='last_name'
           placeholder='Doe'
+          {...register('last_name')}
         />
         <label htmlFor='last_name'>Last Name</label>
       </div>
@@ -55,6 +58,7 @@ const Signup = () => {
           className='form-select'
           id='gender'
           name='gender'
+          {...register('gender')}
         >
           <option value=''>Choose...</option>
           <option value='M'>Male</option>
@@ -70,6 +74,7 @@ const Signup = () => {
           id='email'
           name='email'
           placeholder='name@example.com'
+          {...register('email')}
         />
         <label htmlFor='email'>Email address</label>
       </div>
@@ -81,6 +86,7 @@ const Signup = () => {
           id='password'
           name='password'
           placeholder='Password'
+          {...register('password')}
         />
         <label htmlFor='password'>Password</label>
       </div>
