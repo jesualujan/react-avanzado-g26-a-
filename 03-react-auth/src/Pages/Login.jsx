@@ -1,32 +1,30 @@
 import React from 'react'
 import logo from '@/assets/react.svg'
 import '@/Style/form.css'
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { loginUserService } from '@/Services/userServices'
 import { useAuthContext } from '@/Context/useAuthContext'
 
 const Login = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const navigate = useNavigate()
 
-  const {register, handleSubmit, formState: {errors}} = useForm()
-    const navigate = useNavigate()
+  const { login } = useAuthContext()
 
-    const {login} = useAuthContext()
-    
-    const onSubmit = async (data) => {
-        try {
-            const response = await loginUserService(data)
-            if(response.status === 200){
-              navigate('/')
-              console.log('Usuario autenticado correctamente')
-              localStorage.setItem('token', response.data.token)
-              login(response.data.token)
-            }
-        } catch (error) {
-            console.log('Ocurrio un error al registrarse', error)
-        }
+  const onSubmit = async (data) => {
+    try {
+      const response = await loginUserService(data)
+      if (response.status === 200) {
+        navigate('/')
+        console.log('Usuario autenticado correctamente')
+        localStorage.setItem('token', response.data.token)
+        login(response.data.token)
+      }
+    } catch (error) {
+      console.log('Ocurrio un error al registrarse', error)
     }
-
+  }
 
   return (
     <main className='form-signin w-100 m-auto'>
