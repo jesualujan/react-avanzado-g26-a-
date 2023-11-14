@@ -1,5 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react'
-import jwtDecode from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext() //Creamos el contexto
 
@@ -23,7 +23,7 @@ const [userPayload, setUserPayload] = useState(null)
     }
 
 
-    useEffect(() => { //Verificar que exista un token memoria y hacer la decodificacion para mostrar las informacion
+    useEffect(() => { //Verificar que exista un token memoria para que el usuario no tenga que volver a loguearse
         const token = localStorage.getItem('token')
         if(token) {
             const decoded = jwtDecode(token)
@@ -41,4 +41,4 @@ const [userPayload, setUserPayload] = useState(null)
   )
 }
 
-export default AuthProvider
+export  {AuthProvider, AuthContext}
